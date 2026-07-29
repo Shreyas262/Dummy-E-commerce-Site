@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
+// Hook to get and set the value of URL parameters
 function useSearchParamUpdater() {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -9,8 +10,10 @@ function useSearchParamUpdater() {
   const currentPage = Number(searchParams.get("page")) || 1;
 
   const updateSearchParam = (key, value) => {
+    // assigning the urlsearchparams object to a variable
     const params = new URLSearchParams(searchParams);
 
+    // removing the query parameters when they are default, if not default then setting the query parameters
     if (
       value === "" ||
       value === null ||
@@ -30,7 +33,7 @@ function useSearchParamUpdater() {
 
     setSearchParams(params);
   };
-
+  
   return {
     searchText,
     selectedCategory,

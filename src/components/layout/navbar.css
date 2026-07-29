@@ -1,0 +1,99 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 70px;
+}
+
+.logo a {
+    font-size: 1.6rem;
+    font-weight: 700;
+
+    color: var(--primary);
+
+    transition: var(--transition);
+}
+
+.logo a:hover {
+    color: var(--primary-hover);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    position: relative;
+
+    font-weight: 500;
+    color: var(--text);
+
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -6px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--primary);
+
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: .4rem;
+
+    min-width: 20px;
+    height: 20px;
+
+    padding: 0 .35rem;
+
+    border-radius: 999px;
+
+    background: var(--danger);
+    color: white;
+
+    font-size: .75rem;
+    font-weight: 600;
+}

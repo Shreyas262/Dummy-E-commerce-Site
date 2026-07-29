@@ -1,0 +1,29 @@
+button, .button{
+  border: none;
+  border-radius: var(--radius-md);
+  padding: .75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  transition: var(--transition);
+}
+
+/* button:hover:not(:disabled) {
+  background: var(--primary-hover);
+} */
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}

@@ -10,8 +10,10 @@ import Register from '../pages/register/Register'
 import NotFound from '../pages/not_found/NotFound'
 import ProductDetails from '../pages/products/ProductDetails';
 
+// Creating the router
 const router = createBrowserRouter([
-    {
+    {   
+        // index/home path in app layout and the nested paths within
         path: "/",
         Component: AppLayout,
         children: [
@@ -23,6 +25,7 @@ const router = createBrowserRouter([
         ]
     },
     {
+        // paths for authentication pages
         path: "auth",
         Component: AuthLayout,
         children: [
@@ -31,6 +34,7 @@ const router = createBrowserRouter([
         ]
     },
     {
+        // if any given path not found
         path: "*",
         Component: NotFound,
     }

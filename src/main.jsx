@@ -5,7 +5,11 @@ import router from './routes/router.jsx'
 import store from './app/store.js'
 import { Provider } from 'react-redux'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import './index.css'
+import './styles/index.css'
+import "./styles/reset.css";
+import "./styles/variables.css";
+import "./styles/global.css";
+import "./styles/components.css";
 
 const queryClient = new QueryClient();
 

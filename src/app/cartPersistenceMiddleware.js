@@ -1,5 +1,5 @@
 import { saveCart } from "../utils/localStorage";
-
+// saving the cart to local storage after every action from the cart
 const cartPersistenceMiddleware = store => next => action => {
     
     const result = next(action);
