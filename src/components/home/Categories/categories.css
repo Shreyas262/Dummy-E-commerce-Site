@@ -26,36 +26,7 @@
 
 .categories-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-/* ---------- Tablet ---------- */
-
-@media (min-width: 768px) {
-
-    .categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-/* ---------- Desktop ---------- */
-
-@media (min-width: 1024px) {
-
-    .categories-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-}
-
-/* ---------- Large Desktop ---------- */
-
-@media (min-width: 1440px) {
-
-    .categories-grid {
-        grid-template-columns: repeat(6, 1fr);
-    }
-
+    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+    justify-content: center;
+    gap: 2rem;
 }

@@ -5,10 +5,13 @@ import Home from '../pages/home/Home'
 import Products from '../pages/products/Products'
 import Cart from '../pages/cart/Cart'
 import Wishlist from '../pages/wishlist/Wishlist'
-import Login from '../pages/login/Login'
-import Register from '../pages/register/Register'
+import Login from '../pages/auth/Login'
+import Register from '../pages/auth/Register'
 import NotFound from '../pages/not_found/NotFound'
-import ProductDetails from '../pages/products/ProductDetails';
+import ProductDetails from '../pages/products/ProductDetails'
+import Checkout from '../pages/checkout/Checkout'
+import Profile from '../pages/profile/Profile';
+import ProtectedRoute from './ProtectedRoute';
 
 // Creating the router
 const router = createBrowserRouter([
@@ -20,8 +23,46 @@ const router = createBrowserRouter([
             { index: true, Component: Home },
             { path: "products", Component: Products},
             { path: "products/:id", Component: ProductDetails },
-            { path: "cart", Component: Cart},
-            { path: "wishlist", Component: Wishlist },
+            {
+                path: "cart",
+                element: (
+                    <ProtectedRoute>
+                        <Cart />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "wishlist",
+                element: (
+                    <ProtectedRoute>
+                        <Wishlist />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "checkout",
+                element: (
+                    <ProtectedRoute>
+                        <Checkout />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "profile",
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                )
+            },
+            // {
+            //     path: "orders",
+            //     element: (
+            //         <ProtectedRoute>
+            //             <Orders />
+            //         </ProtectedRoute>
+            //     )
+            // }
         ]
     },
     {

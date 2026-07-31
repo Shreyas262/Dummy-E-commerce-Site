@@ -25,6 +25,8 @@ function ProductDetails() {
   const cartItems = useSelector(state => state.cart.items);
   
   const wishlistItems = useSelector(state => state.wishlist.items);
+
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
   
   const [selectedImage, setSelectedImage] = useState(0);
   
@@ -159,12 +161,12 @@ function ProductDetails() {
                 {productDetails.title}
             </h1>
 
-            <button
+            {isAuthenticated && <button
               className="details-wishlist-btn"
               onClick={handleWishlistToggle}
             >
               {isWishlisted ? "❤️" : "🤍"}
-            </button>
+            </button>}
 
           </div>
 

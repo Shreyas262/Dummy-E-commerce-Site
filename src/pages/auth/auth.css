@@ -1,0 +1,153 @@
+/* ===========================
+   Auth Section
+=========================== */
+
+.login-section,
+.register-section {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* ===========================
+   Auth Container
+=========================== */
+
+.login-container,
+.register-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    margin-bottom: .5rem;
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+}
+
+/* ===========================
+   Forms
+=========================== */
+
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-form label,
+.register-form label {
+    font-weight: 600;
+}
+
+.login-form input,
+.register-form input {
+    width: 100%;
+    padding: .75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--background);
+    color: var(--text);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.login-form input:focus,
+.register-form input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+.login-form .button,
+.register-form .button {
+    margin-top: .5rem;
+    width: 100%;
+}
+
+/* ===========================
+   Helper Text
+=========================== */
+
+.password-help {
+    margin-top: -.5rem;
+    font-size: .85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* ===========================
+   Error
+=========================== */
+
+.form-error {
+    padding: .75rem 1rem;
+    border-radius: var(--radius-md);
+    background: rgba(239, 68, 68, .1);
+    color: #dc2626;
+    font-size: .9rem;
+}
+
+/* ===========================
+   Footer
+=========================== */
+
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.auth-footer p {
+    color: var(--text-secondary);
+}
+
+.auth-footer a {
+    margin-left: .25rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (min-width: 768px) {
+    .login-container,
+    .register-container {
+        padding: 2.5rem;
+    }
+}
+
+/* ===========================
+   Desktop
+=========================== */
+
+@media (min-width: 1024px) {
+    .login-container,
+    .register-container {
+        max-width: 550px;
+    }
+}

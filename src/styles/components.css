@@ -27,3 +27,8 @@ button:disabled {
   transform: translateY(-5px);
   box-shadow: var(--shadow-md);
 }
+
+.container {
+    width: min(1400px, 92%);
+    margin: 0 auto;
+}

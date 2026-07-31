@@ -8,7 +8,11 @@ import './productCard.css'
 function ProductCard({ product, variant }) {
   
   const wishlist = useSelector(state => state.wishlist.items)
-  const isWishlisted = wishlist.some(item=> item.id === product.id)
+
+  const isWishlisted = wishlist.some(item => item.id === product.id)
+  
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+
   const dispatch = useDispatch();
 
   const handleWishlistToggle = () => {
@@ -64,17 +68,12 @@ function ProductCard({ product, variant }) {
 
           <img src={product.thumbnail} alt={product.title} />
         
-          <button
+          {isAuthenticated && <button
             className="wishlist-btn"
             onClick={handleWishlistToggle}
-            aria-label={
-              isWishlisted
-                ? "Remove from wishlist"
-                : "Add to wishlist"
-            }
           >
             {isWishlisted ? "❤️" : "🤍"}
-          </button>
+          </button>}
 
         </div>
 

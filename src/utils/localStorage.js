@@ -19,3 +19,12 @@ export const loadWishlist = () => {
     const wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || [];
     return wishlistItems
 }
+
+export const saveUser = (user) => {
+    localStorage.setItem = ("user", JSON.stringify(user));
+}
+
+export const loadUser = () => {
+    const user = JSON.parse(localStorage.getItem("user")) || null;
+    return user
+}
