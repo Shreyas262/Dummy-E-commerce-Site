@@ -1,4 +1,6 @@
-import { saveCart } from "../utils/localStorage";
+import { saveCart, loadUser } from "../../utils/localStorage";
+
+const user = loadUser()
 // saving the cart to local storage after every action from the cart
 const cartPersistenceMiddleware = store => next => action => {
     
@@ -6,7 +8,7 @@ const cartPersistenceMiddleware = store => next => action => {
 
     if(/^cart\//.test(action.type)){
         const items = store.getState().cart.items;
-        saveCart(items);
+        saveCart(user.id, items);
     }
     return result;
 }

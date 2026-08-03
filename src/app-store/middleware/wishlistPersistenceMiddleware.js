@@ -1,4 +1,4 @@
-import { saveWishlist } from "../utils/localStorage";
+import { saveWishlist } from "../../utils/localStorage";
 // saving the cart to local storage after every action from the cart
 const wishlistPersistenceMiddleware = store => next => action => {
     

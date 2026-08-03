@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
 import AppLayout from '../layouts/AppLayout';
-import AuthLayout from '../layouts/AuthLayout';
 import Home from '../pages/home/Home'
 import Products from '../pages/products/Products'
 import Cart from '../pages/cart/Cart'
@@ -29,7 +28,7 @@ const router = createBrowserRouter([
                     <ProtectedRoute>
                         <Cart />
                     </ProtectedRoute>
-                )
+                ),
             },
             {
                 path: "wishlist",
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
                     <ProtectedRoute>
                         <Wishlist />
                     </ProtectedRoute>
-                )
+                ),
             },
             {
                 path: "checkout",
@@ -45,7 +44,7 @@ const router = createBrowserRouter([
                     <ProtectedRoute>
                         <Checkout />
                     </ProtectedRoute>
-                )
+                ),
             },
             {
                 path: "profile",
@@ -53,7 +52,7 @@ const router = createBrowserRouter([
                     <ProtectedRoute>
                         <Profile />
                     </ProtectedRoute>
-                )
+                ),
             },
             // {
             //     path: "orders",
@@ -61,17 +60,16 @@ const router = createBrowserRouter([
             //         <ProtectedRoute>
             //             <Orders />
             //         </ProtectedRoute>
-            //     )
+            //     ),
             // }
-        ]
-    },
-    {
-        // paths for authentication pages
-        path: "auth",
-        Component: AuthLayout,
-        children: [
-            { path: "login", index: true, Component: Login },
-            { path: "register", Component: Register },
+            
+            // paths for authentication pages
+            {
+                path: "login", Component: Login,
+            },        
+            {
+                path: "register", Component: Register,  
+            }
         ]
     },
     {

@@ -6,11 +6,12 @@ function ProtectedRoute({ children }) {
         (state) => state.auth.isAuthenticated
     );
 
-    return isAuthenticated ? (
-        children
-    ) : (
-        <Navigate to="/auth/login" replace />
-    );
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return children;
+    
 }
 
 export default ProtectedRoute;

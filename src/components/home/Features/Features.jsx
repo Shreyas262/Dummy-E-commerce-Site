@@ -1,5 +1,6 @@
 import { FaTruck, FaShieldAlt, FaStar, FaHeadset } from 'react-icons/fa'
 import FeatureCard from './FeatureCard'
+import './features.css'
 
 function Features() {
     const features = [

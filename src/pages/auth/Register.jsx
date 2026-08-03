@@ -5,23 +5,26 @@ import './auth.css'
 
 function Register() {
   return (
-    <section className='register-section'>
+    <main className='register-section'>
       
       <div className="register-container">
 
-        <AuthHeader title="Register" subtitle="Create an account and continue shopping." />
+        <AuthHeader
+          title="Register"
+          subtitle="Create an account and continue shopping."
+        />
 
         <RegisterForm />
 
         <AuthFooter
           text="Already have an account?"
           linkText="Login"
-          to="/auth/login"
+          to="/login"
         />  
 
       </div>
     
-    </section>
+    </main>
   )
 }
 

@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { logout } from '../../features/auth/authSlice'
+import { logout } from '../../app-store/slice/authSlice'
 import './navbar.css'
 
 function Navbar() {
@@ -71,7 +71,7 @@ function Navbar() {
             ? <li><NavLink to={"/profile"} className={getNavClass}>
                 Profile
               </NavLink></li>
-            : <li><NavLink to={"/auth/login"} className={getNavClass}>
+            : <li><NavLink to={"/login"} className={getNavClass}>
                 Login
             </NavLink></li>
           }

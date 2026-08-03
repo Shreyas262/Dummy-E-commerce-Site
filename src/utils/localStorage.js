@@ -1,30 +1,56 @@
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
+}
+
+function loadFromStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
+}
+
 // save cart to local storage
-export const saveCart = (items) => {
-    localStorage.setItem("cart", JSON.stringify(items));
+export const saveCart = (userId, items) => {
+    localStorage.setItem("cart", JSON.stringify(items))
 }
 
 // load cart from local storage
-export const loadCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+export const loadCart = (userId) => {
+    const cartItems = loadFromStorage("cart") || [];
     return cartItems
 }
 
 // save wishlist to local storage
-export const saveWishlist = (items) => {
-    localStorage.setItem("wishlist", JSON.stringify(items));
+export const saveWishlist = (userId, items) => {
+    saveToStorage("wishlist", items);
 }
 
 // load wishlist from localStorage
-export const loadWishlist = () => {
-    const wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || [];
+export const loadWishlist = (userId) => {
+    const wishlistItems = loadFromStorage("wishlist") || [];
     return wishlistItems
 }
 
-export const saveUser = (user) => {
-    localStorage.setItem = ("user", JSON.stringify(user));
+// saves array of multiple users
+export const saveUsers = (users) => {
+    saveToStorage("users", users);
 }
 
+// loads array of multiple users
+export const loadUsers = () => {
+    const users = loadFromStorage("users") || [];
+    return users;
+}
+
+// saves a user for current session
+export const saveUser = (user) => {
+    saveToStorage("user", user)
+}
+
+// Loads current user 
 export const loadUser = () => {
-    const user = JSON.parse(localStorage.getItem("user")) || null;
-    return user
+    const user = loadFromStorage("user") || null;
+    return user;
+}
+
+// logout current user 
+export const removeUser = () => {
+    localStorage.removeItem("user")
 }

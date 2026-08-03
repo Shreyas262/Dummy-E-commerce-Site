@@ -1,22 +1,27 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../features/auth/authSlice";
+import { login } from "../../app-store/slice/authSlice";
+import { loadUsers } from "../../utils/localStorage";
+
+const initialLoginState = {
+  email: "",
+  password: "",
+}
 
 function LoginForm() {
   
-  const [loginState, setLoginState] = useState({
-    email: "",
-    password: "",
-  })
+  const [loginState, setLoginState] = useState(initialLoginState);
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     
-    const { name, value } = e.target;
+    if(error) setError("")
 
+    const { name, value } = e.target;
     setLoginState((prev) => ({
       ...prev,
       [name]: value,
@@ -25,16 +30,28 @@ function LoginForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(login());
-    setLoginState({
-      email: "",
-      password: "",
-    });
+    
+    const allUsers = loadUsers();
+    const user = allUsers.find(u => u.email === loginState.email)
+    
+    if (!user) {
+      setError("Invalid e-mail or password")
+      return;
+    }
+
+    if (user.password !== loginState.password) {
+      setError("Invalid e-mail or password");
+      return;
+    }
+
+    dispatch(login(user))    
+    setLoginState(initialLoginState)
     navigate("/");
-  };
+  }
 
   return (
     <form className="login-form" onSubmit={handleFormSubmit}>
+      {error && <p className="error">{error}</p>}
 
       <label htmlFor="login-email">Email: </label>
       <input
@@ -44,6 +61,7 @@ function LoginForm() {
         placeholder="e.g. abc@email.com "
         value={loginState.email}
         onChange={handleChange}
+        required
       />  
 
       <label htmlFor="login-password">Password: </label>
@@ -54,6 +72,7 @@ function LoginForm() {
         placeholder="Enter your password"
         value={loginState.password}
         onChange={handleChange}
+        required
       />
 
       <button type="submit" className="button">Login</button>

@@ -1,8 +1,8 @@
 // Renders a product card according to the products array (used in Products.jsx) 
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../../features/cart/cartSlice';
-import { addToWishlist, removeFromWishlist } from '../../features/wishlist/wishlistSlice'
+import { addToCart } from '../../app-store/slice/cartSlice';
+import { addToWishlist, removeFromWishlist } from '../../app-store/slice/wishlistSlice'
 import './productCard.css'
 
 function ProductCard({ product, variant }) {
@@ -106,14 +106,14 @@ function ProductCard({ product, variant }) {
             View Details
           </Link>
 
-          <button
+          {isAuthenticated && <button
             className="cart-btn"
             onClick={() =>
               dispatch(addToCart(product))
             }
           >
             Add to Cart
-          </button>
+          </button>}
 
         </div>
     

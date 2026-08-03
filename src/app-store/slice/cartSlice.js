@@ -1,9 +1,11 @@
 // Creating the cartSlice to perform different actions on the cart elements 
 import { createSlice } from '@reduxjs/toolkit'
-import { saveCart, loadCart } from '../../utils/localStorage';
+import { saveCart, loadCart, loadUser } from '../../utils/localStorage';
+
+const user = loadUser();
 
 const initialState = {
-    items: loadCart(),
+    items: loadCart(user.id),
 }
 
 const cartSlice = createSlice({
@@ -21,8 +23,8 @@ const cartSlice = createSlice({
                     quantity: 1,
                 })
             }
-             
         },
+
         // action for removing an item from cart
         removeFromCart: (state, action) => {
             state.items = state.items.filter(item =>
@@ -30,6 +32,7 @@ const cartSlice = createSlice({
             );
              
         },
+
         // action to increase quantity of an item in the cart
         increaseQuantity: (state, action) => {
             const existingItem = state.items.find(item => item.id === action.payload);
@@ -38,6 +41,7 @@ const cartSlice = createSlice({
             }
              
         },
+
         // action to decrease quantity of an item in the cart
         decreaseQuantity: (state, action) => {
             const existingItem = state.items.find(item => item.id === action.payload);
@@ -52,6 +56,7 @@ const cartSlice = createSlice({
             }
              
         },
+        
         // action to clear the entire cart
         clearCart: (state) => {
             state.items = []; 

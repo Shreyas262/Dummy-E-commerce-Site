@@ -5,7 +5,7 @@ import './auth.css'
 
 function Login() {
   return (
-    <section className='login-section'>
+    <main className='login-section'>
       <div className="login-container">
         
         <AuthHeader title="Login" subtitle="Sign in to continue shopping." />
@@ -15,12 +15,12 @@ function Login() {
         <AuthFooter
           text="Don't have an account?"
           linkText="Register"
-          to="/auth/register"
+          to="/register"
         />
         
       </div>
 
-    </section>
+    </main>
   )
 }
 

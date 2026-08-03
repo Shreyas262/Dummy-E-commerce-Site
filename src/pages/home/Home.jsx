@@ -9,8 +9,8 @@ function Home() {
   return (
     <main>
       <Hero />
-      <Categories />
       <FeaturedProducts />
+      <Categories />
       <Features />
       <Newsletter />
     </main>

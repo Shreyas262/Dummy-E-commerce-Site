@@ -26,7 +26,7 @@ function Hero() {
           <div className="hero-buttons">
 
             <Link to="/products" className="primary-btn">Shop Now</Link>
-            <Link to="/#categories" className="secondary-btn">Explore Categories</Link>
+            <a href="#categories" className="secondary-btn">Explore Categories</a>
 
           </div>
 

@@ -1,5 +1,5 @@
-import { removeFromWishlist, clearWishlist } from "../../features/wishlist/wishlistSlice"
-import { addToCart } from "../../features/cart/cartSlice"
+import { removeFromWishlist, clearWishlist } from "../../app-store/slice/wishlistSlice"
+import { addToCart } from "../../app-store/slice/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 import './wishlist.css'

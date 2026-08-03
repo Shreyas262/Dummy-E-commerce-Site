@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getProduct } from '../../api/productsApi';
-import { addToCart } from '../../features/cart/cartSlice'
-import { addToWishlist, removeFromWishlist} from '../../features/wishlist/wishlistSlice'
+import { addToCart } from '../../app-store/slice/cartSlice'
+import { addToWishlist, removeFromWishlist} from '../../app-store/slice/wishlistSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react";
 import "./productDetails.css";
@@ -11,6 +11,7 @@ import "./productDetails.css";
 function ProductDetails() {
   // getting value of id from the URL 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   // query to load products data
   const { data: productDetails, isLoading, isError, error } = useQuery({
@@ -79,6 +80,13 @@ function ProductDetails() {
     );
   };
   
+  const handleAddToCart = () => {
+    if(isAuthenticated){
+      dispatch(addToCart(productDetails))
+    } else {
+      navigate("/login")
+    }
+  }
 
   return (
     <div className='product-details-container'>
@@ -182,7 +190,7 @@ function ProductDetails() {
           
           <button
             disabled={isInCart}
-            onClick={() => dispatch(addToCart(productDetails))}
+            onClick={handleAddToCart}
             className='cart-btn'
           >
             {isInCart ? "Already in Cart" : "Add to Cart"}
