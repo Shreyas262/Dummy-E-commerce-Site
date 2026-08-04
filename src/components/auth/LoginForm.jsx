@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../app-store/slice/authSlice";
-import { loadUsers } from "../../utils/localStorage";
+import { loadCart, loadUsers, loadWishlist } from "../../utils/localStorage";
+import { setCart } from "../../app-store/slice/cartSlice";
+import { setWishlist } from "../../app-store/slice/wishlistSlice";
 
 const initialLoginState = {
   email: "",
@@ -44,7 +46,10 @@ function LoginForm() {
       return;
     }
 
-    dispatch(login(user))    
+    dispatch(login(user));
+    dispatch(setCart(loadCart(user.id)));
+    dispatch(setWishlist(loadWishlist(user.id)))
+
     setLoginState(initialLoginState)
     navigate("/");
   }

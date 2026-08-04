@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom";
 import { removeFromCart, increaseQuantity, decreaseQuantity, clearCart } from "../../app-store/slice/cartSlice"
 import { Link } from "react-router-dom";
 import './cart.css'
@@ -12,6 +13,11 @@ function Cart() {
   const totalPrice = items.reduce((total, item) => total + (item.quantity * item.price), 0).toFixed(2)
   
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleItemClick = (itemId) => {
+    navigate(`/products/${itemId}`)
+  }
   
   if (items.length === 0) {
     return (
@@ -44,88 +50,89 @@ function Cart() {
         Shopping Cart
       </h1>
       
-    <div className="cart-page">
+      <div className="cart-page">
 
-      <div className="cart-items">
+        <div className="cart-items">
 
-        {items.map(item => (
-          <div key={item.id} className="cart-item">
+          {items.map(item => (
+            <div key={item.id} className="cart-item">
 
-            <img
-              src={item.thumbnail}
-              alt={item.title}
-              className="cart-image"
-            />
+              <img
+                src={item.thumbnail}
+                alt={item.title}
+                className="cart-image"
+                onClick={()=>handleItemClick(item.id)}
+              />
 
-            <div className="cart-details">
+              <div className="cart-details">
 
-              <h3>{item.title}</h3>
+                <h3 onClick={()=>handleItemClick(item.id)}>{item.title}</h3>
 
-              <p className="price">
-                ${item.price}
-              </p>
+                <p className="price">
+                  ${item.price}
+                </p>
 
-              <div className="quantity-controls">
+                <div className="quantity-controls">
 
-                <button onClick={() => dispatch(decreaseQuantity(item.id))}>-</button>
+                  <button onClick={() => dispatch(decreaseQuantity(item.id))}>-</button>
                 
-                <span>  {item.quantity}  </span>
+                  <span>  {item.quantity}  </span>
                     
-                <button onClick={() => dispatch(increaseQuantity(item.id))}>+</button>
+                  <button onClick={() => dispatch(increaseQuantity(item.id))}>+</button>
+
+                </div>
+              
+                <p className="subtotal">
+                  Subtotal: $
+                  {(item.price * item.quantity).toFixed(2)}
+                </p>
+
+                <button className="remove-btn" onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
 
               </div>
-              
-              <p className="subtotal">
-                Subtotal: $
-                {(item.price * item.quantity).toFixed(2)}
-              </p>
-
-              <button className="remove-btn" onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
 
             </div>
+          ))}
 
+        </div>
+
+        <div className="cart-summary">
+
+          <h2>Order Summary</h2>
+
+          <div className="summary-row">
+            <span>Total Items</span>
+            <strong>{totalCartItems}</strong>
           </div>
-        ))}
 
-      </div>
+          <div className="summary-row summary-total">
+            <span>Total Price</span>
+            <strong>${totalPrice}</strong>
+          </div>
 
-      <div className="cart-summary">
-
-        <h2>Order Summary</h2>
-
-        <div className="summary-row">
-          <span>Total Items</span>
-          <strong>{totalCartItems}</strong>
-        </div>
-
-        <div className="summary-row summary-total">
-          <span>Total Price</span>
-          <strong>${totalPrice}</strong>
-        </div>
-
-        <button className="checkout-btn">
+          <button className="checkout-btn">
             Proceed to Checkout
-        </button>
+          </button>
 
-        <button
+          <button
             className="clear-btn"
             onClick={() => {
               const confirmClear = window.confirm(
-                  "Are you sure you want to clear your cart?"
+                "Are you sure you want to clear your cart?"
               );
 
               if (confirmClear) {
-                  dispatch(clearCart());
+                dispatch(clearCart());
               }
             }}
-        >
+          >
             Clear Cart
-        </button>
+          </button>
+
+        </div>
 
       </div>
-
-    </div>
-  </>
+    </>
   )
 }
 

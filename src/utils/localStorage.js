@@ -6,26 +6,38 @@ function loadFromStorage(key) {
     return JSON.parse(localStorage.getItem(key))
 }
 
+function saveUserCollection(key, userId, items) {
+    const collection = loadFromStorage(key) || {}
+    
+    saveToStorage(key, {
+        ...collection,
+        [userId]: items
+    })
+}
+
+function loadUserCollection(key, userId) {
+    const collection = loadFromStorage(key) || {}
+    return collection[userId] || [];
+}
+
 // save cart to local storage
 export const saveCart = (userId, items) => {
-    localStorage.setItem("cart", JSON.stringify(items))
+    saveUserCollection("carts", userId, items)
 }
 
 // load cart from local storage
 export const loadCart = (userId) => {
-    const cartItems = loadFromStorage("cart") || [];
-    return cartItems
+    return loadUserCollection("carts", userId)
 }
 
 // save wishlist to local storage
 export const saveWishlist = (userId, items) => {
-    saveToStorage("wishlist", items);
+    saveUserCollection("wishlists", userId, items)
 }
 
 // load wishlist from localStorage
 export const loadWishlist = (userId) => {
-    const wishlistItems = loadFromStorage("wishlist") || [];
-    return wishlistItems
+    return loadUserCollection("wishlists", userId)
 }
 
 // saves array of multiple users

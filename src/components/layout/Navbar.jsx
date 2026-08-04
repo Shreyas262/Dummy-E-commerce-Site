@@ -20,12 +20,11 @@ function Navbar() {
   return (
     <header className='header'>
 
-      <nav className='navbar'>
-
         <div className='logo'>
-
           <NavLink to="/">ShopEase</NavLink>
         </div>
+      <nav className='navbar'>
+
 
         <ul className='nav-links'>
           

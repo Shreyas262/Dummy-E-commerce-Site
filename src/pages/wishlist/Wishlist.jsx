@@ -11,6 +11,10 @@ function Wishlist() {
   );
   const cartItems = useSelector(state=>state.cart.items)
   const dispatch = useDispatch();
+
+  const handleItemClick = (itemId) => {
+    navigate(`/products/${itemId}`)
+  }
   
   if (wishlist.length === 0) {
   return (
@@ -74,9 +78,15 @@ function Wishlist() {
                 src={product.thumbnail}
                 alt={product.title}
                 className="wishlist-image"
+                onClick={()=> handleItemClick(product.id)}
               />
 
-              <h3 className="wishlist-title">{product.title}</h3>
+              <h3
+                className="wishlist-title"
+                onClick={() => handleItemClick(product.id)}
+              >
+                {product.title}
+              </h3>
 
               <p className="wishlist-price">${product.price}</p>
 

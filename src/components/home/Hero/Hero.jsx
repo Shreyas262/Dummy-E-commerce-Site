@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { loadUser } from "../../../utils/localStorage";
 import heroImage from '../../../assets/images/heroImage.png'
 import './hero.css'
 
 function Hero() {
+
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const user = loadUser();
+
   return (
     <section className="hero-section">
       <div className="container hero-container">
         
         <div className="hero-content">
-
+          
           <div className="hero-text">
 
             <h1>

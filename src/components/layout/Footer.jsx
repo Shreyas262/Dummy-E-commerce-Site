@@ -1,7 +1,11 @@
-import './footer.css'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import './footer.css'
 
 function Footer() {
+
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+
   return (
     <footer className="footer">
       
@@ -23,7 +27,7 @@ function Footer() {
           <Link to={"/products"}>Products</Link>
           <Link to={"/cart"}>Cart</Link>
           <Link to={"/wishlist"}>Wishlist</Link>
-          <Link to={"/auth/login"}>Login</Link>
+          {!isAuthenticated && <Link to={"/login"}>Login</Link>}
 
         </div>
         <div className="footer-contact">

@@ -10,11 +10,7 @@ function Profile() {
       
             <div className="profile-container">
             
-                <ProfileCard
-                    name="John Doe"
-                    email="john.doe@example.com"
-                />
-                
+                <ProfileCard />
                 <ProfileInfo />
                 <LogoutButton />
 

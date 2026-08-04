@@ -1,33 +1,34 @@
-/* ===========================
+/* ===================================
    Auth Section
-=========================== */
+=================================== */
 
 .login-section,
 .register-section {
-    min-height: 80vh;
+    min-height: calc(100vh - 140px);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
+    background: var(--background);
 }
 
-/* ===========================
+/* ===================================
    Auth Container
-=========================== */
+=================================== */
 
 .login-container,
 .register-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
     padding: 2rem;
     background: var(--surface);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
 }
 
-/* ===========================
-   Header
-=========================== */
+/* ===================================
+   Auth Header
+=================================== */
 
 .auth-header {
     text-align: center;
@@ -35,16 +36,17 @@
 }
 
 .auth-header h1 {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 
 .auth-header p {
     color: var(--text-secondary);
+    line-height: 1.5;
 }
 
-/* ===========================
+/* ===================================
    Forms
-=========================== */
+=================================== */
 
 .login-form,
 .register-form {
@@ -56,12 +58,14 @@
 .login-form label,
 .register-form label {
     font-weight: 600;
+    color: var(--text);
 }
 
 .login-form input,
-.register-form input {
+.register-form input,
+.register-form textarea {
     width: 100%;
-    padding: .75rem 1rem;
+    padding: 0.8rem 1rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     background: var(--background);
@@ -70,45 +74,56 @@
     transition: var(--transition);
 }
 
+.register-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
 .login-form input:focus,
-.register-form input:focus {
+.register-form input:focus,
+.register-form textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
-.login-form .button,
-.register-form .button {
-    margin-top: .5rem;
-    width: 100%;
-}
-
-/* ===========================
-   Helper Text
-=========================== */
+/* ===================================
+   Password Helper
+=================================== */
 
 .password-help {
-    margin-top: -.5rem;
-    font-size: .85rem;
+    margin-top: -0.5rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     line-height: 1.5;
 }
 
-/* ===========================
-   Error
-=========================== */
+/* ===================================
+   Error Message
+=================================== */
 
-.form-error {
-    padding: .75rem 1rem;
+.error {
+    padding: 0.75rem 1rem;
     border-radius: var(--radius-md);
-    background: rgba(239, 68, 68, .1);
-    color: #dc2626;
-    font-size: .9rem;
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--danger);
+    font-size: 0.9rem;
+    border: 1px solid rgba(239, 68, 68, 0.25);
 }
 
-/* ===========================
-   Footer
-=========================== */
+/* ===================================
+   Buttons
+=================================== */
+
+.login-form .button,
+.register-form .button {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* ===================================
+   Auth Footer
+=================================== */
 
 .auth-footer {
     margin-top: 2rem;
@@ -120,19 +135,20 @@
 }
 
 .auth-footer a {
-    margin-left: .25rem;
     color: var(--primary);
-    font-weight: 600;
     text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+    transition: var(--transition);
 }
 
 .auth-footer a:hover {
     text-decoration: underline;
 }
 
-/* ===========================
+/* ===================================
    Tablet
-=========================== */
+=================================== */
 
 @media (min-width: 768px) {
     .login-container,
@@ -141,13 +157,13 @@
     }
 }
 
-/* ===========================
+/* ===================================
    Desktop
-=========================== */
+=================================== */
 
 @media (min-width: 1024px) {
     .login-container,
     .register-container {
-        max-width: 550px;
+        max-width: 540px;
     }
 }

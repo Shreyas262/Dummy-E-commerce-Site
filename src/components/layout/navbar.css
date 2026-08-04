@@ -3,6 +3,10 @@
     top: 0;
     z-index: 1000;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
@@ -10,13 +14,17 @@
 
 .navbar {
     width: min(1400px, 92%);
-    margin: 0 auto;
+    margin: 0 3rem;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
 
     min-height: 70px;
+}
+
+.logo{
+    margin-left: 3rem;
 }
 
 .logo a {
