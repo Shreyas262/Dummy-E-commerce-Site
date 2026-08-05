@@ -1,4 +1,5 @@
 import { removeUser, saveUser, saveCart, saveWishlist, } from "../../utils/localStorage";
+import updateStoredUser from "../../utils/updateStoredUser";
 
 const persistenceMiddleware = store => next => action => {
     const result = next(action);
@@ -11,6 +12,7 @@ const persistenceMiddleware = store => next => action => {
             removeUser();
         } else {
             saveUser(user);
+            updateStoredUser(user);
         }
     }
 

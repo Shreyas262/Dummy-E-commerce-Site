@@ -7,9 +7,9 @@ button, .button{
   transition: var(--transition);
 }
 
-/* button:hover:not(:disabled) {
+button:hover {
   background: var(--primary-hover);
-} */
+}
 
 button:disabled {
   cursor: not-allowed;

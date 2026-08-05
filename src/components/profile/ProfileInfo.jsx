@@ -8,18 +8,15 @@ function ProfileInfo() {
 
     if (!user) return null;
 
+    const userAddress = `${user.addresses[0].flatHouse}, ${user.addresses[0].buildingStreet}, ${user.addresses[0].city} - ${user.addresses[0].zipcode}`
+
     return (
         <div className="profile-info card">
             <h3>Account Information</h3>
 
             <div className="profile-info-item">
                 <span>Default Address</span>
-                <span>{ user.addresses !== [] ? user.addresses[0] : "No default address" }</span>
-            </div>
-
-            <div className="profile-info-item">
-                <span>Zipcode</span>
-                <span>{ user.zipcode }</span>
+                <span>{ user.addresses !== [] ? userAddress : "No default address" }</span>
             </div>
 
             <div className="profile-info-item">

@@ -1,3 +1,7 @@
+/* ==========================================
+   PROFILE PAGE
+========================================== */
+
 .profile-section {
     padding: 2rem 1rem;
 }
@@ -5,24 +9,33 @@
 .profile-container {
     max-width: 900px;
     margin: 0 auto;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1.5rem;
 }
+
+/* ==========================================
+   PROFILE CARD
+========================================== */
 
 .profile-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+
     padding: 2rem;
 }
 
 .profile-avatar {
     width: 140px;
     height: 140px;
-    border-radius: 50%;
+
     object-fit: cover;
+    border-radius: 50%;
+
     margin-bottom: 1rem;
 }
 
@@ -32,23 +45,36 @@
 
 .profile-card p {
     color: var(--text-secondary);
+    margin-bottom: .25rem;
 }
+
+.profile-card .button {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+/* ==========================================
+   PROFILE INFO
+========================================== */
 
 .profile-info {
     padding: 2rem;
 }
 
 .profile-info h3 {
+    margin-bottom: 1.5rem;
+
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
 }
 
 .profile-info-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .85rem 0;
+
+    padding: .9rem 0;
+
     border-bottom: 1px solid var(--border);
 }
 
@@ -64,46 +90,463 @@
     color: var(--text-secondary);
 }
 
-.logout-btn {
-    width: 100%;
+/* ==========================================
+   PROFILE ACTIONS
+========================================== */
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
 }
 
-.logout-btn:hover{
+.logout-btn {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: fit-content;
+}
+
+.logout-btn:hover {
     background: var(--danger);
     color: var(--surface);
 }
 
+/* ==========================================
+   ADDRESS SECTION
+========================================== */
+
+.address-section {
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.address-section h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.address-section > p {
+    margin-bottom: 1.5rem;
+
+    color: var(--text-secondary);
+}
+
+.address-section > .button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
 /* ===========================
-   Tablet
+   Address Card
 =========================== */
 
-@media (min-width: 768px) {
+.address-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.address-details {
+    display: flex;
+    flex-direction: column;
+
+    gap: .35rem;
+}
+
+.address-line {
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.address-city {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.address-actions {
+    display: flex;
+    gap: .75rem;
+
+    margin-top: .5rem;
+}
+
+.address-actions .button {
+    flex: 1;
+}
+
+.edit-btn {
+    background: var(--primary);
+    max-width: 20%;
+}
+
+.delete-btn {
+    max-width: 20%;
+}
+
+.delete-btn:hover{
+    background: var(--danger);
+    color: var(--surface);
+}
+
+/* ==========================================
+   COMMON MODAL
+========================================== */
+
+.edit-profile-overlay,
+.address-modal-overlay,
+.password-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+
+    background: rgba(0, 0, 0, .55);
+
+    z-index: 1000;
+}
+
+.edit-profile-modal,
+.address-modal,
+.password-modal {
+    width: 100%;
+    max-width: 600px;
+
+    background: var(--surface);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-lg);
+
+    overflow: hidden;
+
+    animation: modalFade .25s ease;
+}
+
+/* ==========================================
+   MODAL HEADER
+========================================== */
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5rem;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-close-btn {
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    font-size: 1.75rem;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+    color: var(--danger);
+}
+
+/* ==========================================
+   MODAL BODY
+========================================== */
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1.5rem;
+}
+
+.modal-body label {
+    font-weight: 600;
+}
+
+.modal-body input,
+.modal-body textarea {
+    width: 100%;
+
+    padding: .85rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font: inherit;
+
+    transition: var(--transition);
+}
+
+.modal-body textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+}
+
+.edit-profile-form,
+.address-form,
+.edit-profile-form .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit-profile-form label {
+    font-weight: 600;
+    margin-bottom: .35rem;
+}
+
+.edit-profile-form input {
+    width: 100%;
+
+    padding: .85rem 1rem;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--background);
+    color: var(--text);
+
+    font: inherit;
+
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.edit-profile-form input:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+}
+
+.address-form .modal-body {
+    display: grid;
+    gap: 1rem;
+}
+
+.address-form label {
+    font-weight: 600;
+}
+
+.address-form input {
+    width: 100%;
+}
+
+.form-error {
+    padding: .75rem 1rem;
+
+    background: rgba(220, 38, 38, .08);
+
+    border: 1px solid rgba(220, 38, 38, .2);
+
+    border-radius: var(--radius-md);
+
+    color: var(--danger);
+
+    font-size: .9rem;
+}
+
+/* ==========================================
+   MODAL FOOTER
+========================================== */
+
+.modal-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1.5rem;
+
+    border-top: 1px solid var(--border);
+}
+
+.modal-footer .button {
+    width: 100%;
+}
+
+/* ==========================================
+   FORM ERROR
+========================================== */
+
+
+/* ===========================
+   Password Section
+=========================== */
+
+.password-section {
+    
+    padding: 2rem;
+
+    background: var(--surface);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.password-section h3 {
+    margin-bottom: .75rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.password-section p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.password-section .button {
+    width: fit-content;
+}
+
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (min-width:768px) {
 
     .profile-container {
         gap: 2rem;
     }
 
-    .logout-btn {
+    .profile-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .profile-actions .button {
         width: fit-content;
-        align-self: flex-end;
+        min-width: 160px;
+    }
+
+    .profile-card .button {
+        width: fit-content;
+        min-width: 180px;
+    }
+
+    .address-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .address-actions .button {
+        width: fit-content;
+        min-width: 120px;
+    }
+
+    .address-section > .button {
+        width: fit-content;
+    }
+
+    .modal-footer {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .modal-footer .button {
+        width: fit-content;
+        min-width: 140px;
+    }
+
+    .address-form .modal-body{
+
+        display:grid;
+
+        grid-template-columns:180px 1fr;
+
+        gap:1rem 1.5rem;
+
+        align-items:center;
+    }
+
+    .form-error{
+        grid-column:1/-1;
+    }
+
+    .password-section {
+        padding: 2.5rem;
     }
 }
 
-/* ===========================
-   Desktop
-=========================== */
+/* ==========================================
+   DESKTOP
+========================================== */
 
-@media (min-width: 1024px) {
+@media (min-width:1024px) {
 
     .profile-container {
         display: grid;
         grid-template-columns: 320px 1fr;
+
         gap: 2rem;
         align-items: start;
     }
 
+    .profile-card {
+        top: 2rem;
+    }
+
+    .address-section,
+    .password-section,
+    .profile-actions,
     .logout-btn {
         grid-column: 1 / -1;
+    }
+
+    .profile-actions {
         justify-self: end;
+    }
+}
+
+/* ==========================================
+   MODAL ANIMATION
+========================================== */
+
+@keyframes modalFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }

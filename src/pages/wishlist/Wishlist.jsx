@@ -1,7 +1,7 @@
 import { removeFromWishlist, clearWishlist } from "../../app-store/slice/wishlistSlice"
 import { addToCart } from "../../app-store/slice/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './wishlist.css'
 
 
@@ -11,6 +11,7 @@ function Wishlist() {
   );
   const cartItems = useSelector(state=>state.cart.items)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleItemClick = (itemId) => {
     navigate(`/products/${itemId}`)

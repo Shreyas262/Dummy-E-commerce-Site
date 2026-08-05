@@ -2,34 +2,42 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { loadUsers, saveUsers } from "../../utils/localStorage";
 
-const initialState = {
-  id: null,
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  addresses: [],
-  zipcode: "",
-  password: "",
-}
+const createInitialState = () => ({
+    id: null,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    addresses: [
+        {
+            flatHouse: "",
+            buildingStreet: "",
+            city: "",
+            zipcode: "",
+        }
+    ],
+    password: "",
+});
 
 function RegisterForm() {
 
-  const [registerState, setRegisterState] = useState(initialState);
+  const [registerState, setRegisterState] = useState(createInitialState());
   const [error, setError] = useState("");
   const [cnfPass, setCnfPass] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (error) {
-      setError("");
-    }
+    if (error) setError("")
     setRegisterState(prev => ({ ...prev, [name]: value }));
   }
 
   const handleAddressChange = (e) => {
-    setRegisterState(prev => ({...prev, addresses: [e.target.value]}))
+    const { name, value } = e.target;
+    if (error) setError("")
+    
+    const primaryAddress = {...registerState.addresses[0], [name]: value}  
+    setRegisterState(prev => ({...prev, addresses: [primaryAddress]}))
   };
 
   const handleFormSubmit = (e) => {
@@ -54,15 +62,18 @@ function RegisterForm() {
       return;
     }
 
+    const newAddress = {...registerState.addresses[0], id: crypto.randomUUID()}
+
     const newUser = {
       ...registerState, 
       id: crypto.randomUUID(),
+      addresses: [newAddress]
     }
 
     allUsers.push(newUser);
     saveUsers(allUsers);
 
-    setRegisterState(initialState);
+    setRegisterState(createInitialState());
     setCnfPass("");
     
     navigate("/login");
@@ -121,27 +132,55 @@ function RegisterForm() {
         required
       />
 
-      <label htmlFor="useraddresses">Default addresses: </label>
-      <textarea
-        name="addresses"
-        id="useraddresses"
-        placeholder="e.g. 301, Building Name, Street, City"
-        value={registerState.addresses[0]}
-        onChange={handleAddressChange}
-        required
-      />
+      <fieldset>
+        <legend>Address</legend>
 
-      <label htmlFor="userZipcode">Zip-code: </label>
-      <input
-        type="text"
-        name="zipcode"
-        id="userZipcode"
-        placeholder="e.g. 425201"
-        maxLength="6"
-        value={registerState.zipcode}
-        onChange={handleChange}
-        required
-      />
+        <label htmlFor="address-flat-house">Flat/House No.: </label>
+        <input
+          type="text"
+          name="flatHouse"
+          id="address-flat-house"
+          placeholder="e.g. A-101"
+          value={registerState.addresses[0].flatHouse}
+          onChange={handleAddressChange}
+          required
+        />
+
+        <label htmlFor="address-building-street">Building/Street Name: </label>
+        <input
+          type="text"
+          name="buildingStreet"
+          id="address-building-street"
+          placeholder="e.g. ABC building/street"
+          value={registerState.addresses[0].buildingStreet}
+          onChange={handleAddressChange}
+          required
+        />
+
+        <label htmlFor="address-city">City: </label>
+        <input
+          type="text"
+          name="city"
+          id="address-city"
+          placeholder="e.g. Delhi"
+          value={registerState.addresses[0].city}
+          onChange={handleAddressChange}
+          required
+        />
+
+        <label htmlFor="userZipcode">Zip-code: </label>
+        <input
+          type="text"
+          name="zipcode"
+          id="address-zipcode"
+          placeholder="e.g. 425201"
+          maxLength="6"
+          value={registerState.addresses[0].zipcode}
+          onChange={handleAddressChange}
+          required
+        />
+
+      </fieldset>
 
       <label htmlFor="userPassword">Password: </label>
       <input
