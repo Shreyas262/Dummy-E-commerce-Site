@@ -8,7 +8,7 @@ function PasswordSection() {
   return (
     <section className="password-section">
       
-      <h3>Password</h3>
+      <h3>🔒 Password</h3>
       <p>Keep your account secure by updating your password regularly.</p>
       <button
         type="button"

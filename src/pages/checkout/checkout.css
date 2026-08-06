@@ -1,0 +1,83 @@
+/* ==========================================
+   CHECKOUT PAGE
+========================================== */
+
+.checkout-section {
+    width: min(1400px, 92%);
+    margin: 2rem auto;
+}
+
+.checkout-header {
+    margin-bottom: 2rem;
+}
+
+.checkout-header h1 {
+    margin-bottom: .5rem;
+}
+
+.checkout-header p {
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   CHECKOUT LAYOUT
+========================================== */
+
+.checkout-container {
+    display: grid;
+    gap: 2rem;
+}
+
+.checkout-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ==========================================
+   SHARED CHECKOUT CARD
+========================================== */
+
+.checkout-card {
+    padding: 2rem;
+
+    background: var(--surface);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.checkout-card h2 {
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (min-width: 768px) {
+
+    .checkout-section {
+        margin: 3rem auto;
+    }
+
+}
+
+/* ==========================================
+   DESKTOP
+========================================== */
+
+@media (min-width: 1024px) {
+
+    .checkout-container {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+    }
+
+    .order-summary {
+        position: sticky;
+        top: 2rem;
+    }
+
+}

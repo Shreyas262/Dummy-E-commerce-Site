@@ -27,5 +27,5 @@
   --shadow-md: 0 6px 18px rgba(0,0,0,.12);
 
   /* Transition */
-  --transition: .25s ease;
+  --transition: transform .25s ease box-shadow .25 ease;
 }

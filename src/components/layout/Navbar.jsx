@@ -1,91 +1,72 @@
-// Navigation bar
-import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { logout } from '../../app-store/slice/authSlice'
-import './navbar.css'
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+
+import NavLinks from "./NavLinks";
+import MobileMenu from "./MobileMenu";
+
+import "./navbar.css";
 
 function Navbar() {
 
-  const cartItems = useSelector(state => state.cart.items);
+    const cartItems = useSelector(
+        state => state.cart.items
+    );
 
-  const wishlistItems = useSelector(state => state.wishlist.items);
+    const wishlistItems = useSelector(
+        state => state.wishlist.items
+    );
 
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useSelector(
+        state => state.auth.isAuthenticated
+    );
 
-  const dispatch = useDispatch();
-  
-  const getNavClass = ({ isActive }) => isActive ? "active" : "";
+    const [isMenuOpen, setIsMenuOpen] =
+        useState(false);
 
-  return (
-    <header className='header'>
+    return (
 
-        <div className='logo'>
-          <NavLink to="/">ShopEase</NavLink>
-        </div>
-      <nav className='navbar'>
+        <header className="header">
 
+            <div className="logo">
+                <NavLink to="/">
+                    ShopEase
+                </NavLink>
+            </div>
 
-        <ul className='nav-links'>
-          
-          <li>
-            <NavLink to={"/"} className={getNavClass} end>Home</NavLink>
-          </li>
+            <nav className="navbar">
 
-          <li>
-            <NavLink to={"/products"} className={getNavClass}>Products</NavLink>
-          </li>
+                <div className="desktop-nav">
 
-          {isAuthenticated &&
-            
-            <li>  
-              <NavLink to="/cart" className={getNavClass}>
-              Cart
-              {cartItems.length > 0 && (
-                <span className="badge">
-                    {cartItems.length}
-                </span>
-              )}
-              </NavLink>
-            </li>
+                    <NavLinks
+                        cartItems={cartItems}
+                        wishlistItems={wishlistItems}
+                        isAuthenticated={isAuthenticated}
+                    />
 
-          }
-          
-          {isAuthenticated &&
-            
-            <li>
-            <NavLink to="/wishlist" className={getNavClass}>
-              Wishlist
-              {wishlistItems.length > 0 && (
-                <span className="badge">
-                    {wishlistItems.length}
-                </span>
-              )}
-              </NavLink>
-            </li>
+                </div>
 
-          }
+                <button
+                    className="hamburger-btn"
+                    onClick={() => setIsMenuOpen(true)}
+                    type="button"
+                >
+                    ☰
+                </button>
 
-          {isAuthenticated
-            ? <li><NavLink to={"/profile"} className={getNavClass}>
-                Profile
-              </NavLink></li>
-            : <li><NavLink to={"/login"} className={getNavClass}>
-                Login
-            </NavLink></li>
-          }
-        </ul>
+            </nav>
 
-        <div className='nav-actions'>
+            <MobileMenu
+                isOpen={isMenuOpen}
+                onClose={() => setIsMenuOpen(false)}
+                cartItems={cartItems}
+                wishlistItems={wishlistItems}
+                isAuthenticated={isAuthenticated}
+            />
 
-          
-          
-        </div>
+        </header>
 
-      </nav>
-
-    </header>
-  )
+    );
 }
 
-export default Navbar
+export default Navbar;

@@ -110,7 +110,16 @@ function Cart() {
             <strong>${totalPrice}</strong>
           </div>
 
-          <button className="checkout-btn">
+          <button
+            className="checkout-btn"
+            onClick={() =>{
+              if (!window.confirm("Please confirm to proceed to checkout.")) {
+                return;
+              }
+              navigate("/checkout")
+            }
+            }
+          >
             Proceed to Checkout
           </button>
 

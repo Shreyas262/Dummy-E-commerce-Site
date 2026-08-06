@@ -50,7 +50,7 @@ function AddressSection() {
     return (
         <section className="address-section">
 
-            <h3>Saved Addresses</h3>
+            <h3>📍 Saved Addresses</h3>
 
             {addresses.length === 0 ? (
                 <p>No address added yet.</p>

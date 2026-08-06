@@ -2,15 +2,18 @@ import { createBrowserRouter } from 'react-router-dom'
 import AppLayout from '../layouts/AppLayout';
 import Home from '../pages/home/Home'
 import Products from '../pages/products/Products'
+import ProductDetails from '../pages/products/ProductDetails'
 import Cart from '../pages/cart/Cart'
 import Wishlist from '../pages/wishlist/Wishlist'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
-import NotFound from '../pages/not_found/NotFound'
-import ProductDetails from '../pages/products/ProductDetails'
 import Checkout from '../pages/checkout/Checkout'
+import OrderConfirmation from '../pages/orderConfirmation/OrderConfirmation';
 import Profile from '../pages/profile/Profile';
+import Orders from '../pages/orders/Orders';
+import NotFound from '../pages/not_found/NotFound'
 import ProtectedRoute from './ProtectedRoute';
+import OrderDetails from '../pages/orders/orderDetails';
 
 // Creating the router
 const router = createBrowserRouter([
@@ -47,6 +50,14 @@ const router = createBrowserRouter([
                 ),
             },
             {
+                path: "order-confirmation",
+                element: (
+                    <ProtectedRoute>
+                        <OrderConfirmation />
+                    </ProtectedRoute>
+                )
+            },
+            {
                 path: "profile",
                 element: (
                     <ProtectedRoute>
@@ -54,22 +65,19 @@ const router = createBrowserRouter([
                     </ProtectedRoute>
                 ),
             },
-            // {
-            //     path: "orders",
-            //     element: (
-            //         <ProtectedRoute>
-            //             <Orders />
-            //         </ProtectedRoute>
-            //     ),
-            // }
+            {
+                path: "orders",
+                element: (
+                    <ProtectedRoute>
+                        <Orders />
+                    </ProtectedRoute>
+                ),
+            },
+            { path: "orders/:orderId", Component: OrderDetails },
             
             // paths for authentication pages
-            {
-                path: "login", Component: Login,
-            },        
-            {
-                path: "register", Component: Register,  
-            }
+            { path: "login", Component: Login },        
+            { path: "register", Component: Register }
         ]
     },
     {

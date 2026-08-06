@@ -8,7 +8,6 @@ function loadFromStorage(key) {
 
 function saveUserCollection(key, userId, items) {
     const collection = loadFromStorage(key) || {}
-    
     saveToStorage(key, {
         ...collection,
         [userId]: items
@@ -20,6 +19,7 @@ function loadUserCollection(key, userId) {
     return collection[userId] || [];
 }
 
+// 
 // save cart to local storage
 export const saveCart = (userId, items) => {
     saveUserCollection("carts", userId, items)
@@ -65,4 +65,24 @@ export const loadUser = () => {
 // logout current user 
 export const removeUser = () => {
     localStorage.removeItem("user")
+}
+
+// load all orders
+export function loadOrders() {
+    return JSON.parse(localStorage.getItem(`orders`)) || {};
+}
+
+// save all orders 
+export function saveOrders(orders) {
+    localStorage.setItem(`orders`, JSON.stringify(orders));
+}
+
+// add an order of a user
+export function addOrder(userId, order) {
+    const orders = loadOrders();
+    if (!orders[userId]) {
+        orders[userId]= []
+    }
+    orders[userId].push(order);
+    saveOrders(orders);
 }

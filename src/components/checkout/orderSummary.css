@@ -1,0 +1,131 @@
+/* ==========================================
+   ORDER SUMMARY
+========================================== */
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ==========================================
+   ORDER ITEMS
+========================================== */
+
+.summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: .75rem;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item span:first-child {
+    flex: 1;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: var(--text-primary);
+}
+
+.summary-item span:last-child {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   PRICE BREAKDOWN
+========================================== */
+
+.summary-calculations {
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+}
+
+.summary-row,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-row {
+    font-size: .95rem;
+}
+
+.summary-row span {
+    color: var(--text-secondary);
+}
+
+.summary-row strong {
+    font-weight: 600;
+}
+
+.summary-divider {
+    height: 1px;
+    background: var(--border);
+    margin: .25rem 0;
+}
+
+.summary-total {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.summary-total strong {
+    color: var(--primary);
+}
+
+/* ==========================================
+   PLACE ORDER BUTTON
+========================================== */
+
+.place-order-btn {
+    width: 100%;
+
+    margin-top: .5rem;
+}
+
+.place-order-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (min-width: 768px) {
+
+    .summary-item {
+        padding-bottom: 1rem;
+    }
+
+}
+
+/* ==========================================
+   DESKTOP
+========================================== */
+
+@media (min-width: 1024px) {
+
+    .order-summary {
+        position: sticky;
+        top: 2rem;
+    }
+
+}

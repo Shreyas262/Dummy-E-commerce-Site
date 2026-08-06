@@ -1,42 +1,48 @@
-import ProfileCard from "../../components/profile/ProfileCard"
-import ProfileInfo from "../../components/profile/ProfileInfo"
-import LogoutButton from "../../components/profile/LogoutButton"
-import AddressSection from "../../components/profile/AddressSection"
-import PasswordSection from "../../components/profile/PasswordSection"
-import EditProfileModal from '../../components/profile/EditProfileModal'
-import { useState } from "react"
-import './profile.css'
+import ProfileCard from "../../components/profile/ProfileCard";
+import ProfileInfo from "../../components/profile/ProfileInfo";
+import LogoutButton from "../../components/profile/LogoutButton";
+import AddressSection from "../../components/profile/AddressSection";
+import PasswordSection from "../../components/profile/PasswordSection";
+import EditProfileModal from "../../components/profile/EditProfileModal";
+import AccountSection from "../../components/profile/AccountSection";
+import { useState } from "react";
+import "./profile.css";
 
 function Profile() {
-
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    }
 
     return (
         <section className="profile-section">
-      
+
             <EditProfileModal
                 isOpen={isModalOpen}
-                onClose={handleCloseModal}
+                onClose={() => setIsModalOpen(false)}
             />
+
             <div className="profile-container">
-            
 
                 <ProfileCard
                     onEdit={() => setIsModalOpen(true)}
                 />
-                <ProfileInfo />
-                <AddressSection />
-                <PasswordSection />
-                <LogoutButton />
-                    
+
+                <div className="profile-content">
+
+                    <AccountSection />
+
+                    <ProfileInfo />
+
+                    <AddressSection />
+
+                    <PasswordSection />
+
+                    <LogoutButton />
+
+                </div>
+
             </div>
 
         </section>
-    )
+    );
 }
 
-export default Profile
+export default Profile;

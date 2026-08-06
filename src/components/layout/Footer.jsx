@@ -1,63 +1,100 @@
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import './footer.css'
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import "./footer.css";
 
 function Footer() {
 
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+    const isAuthenticated = useSelector(
+        state => state.auth.isAuthenticated
+    );
 
-  return (
-    <footer className="footer">
-      
-      <div className="container footer-container">
+    return (
+        <footer className="footer">
 
-        <div className="footer-brand">
+            <div className="container footer-container">
 
-          <Link to="/">
-            <h2>ShopEase</h2>
-          </Link>
-          
-          <p>Your one-stop destination for quality products at the best prices.</p>
+                <section className="footer-brand">
 
-        </div>
-        <div className="footer-links">
+                    <Link to="/">
+                        <h2>ShopEase</h2>
+                    </Link>
 
-          <h3>Quick Links</h3>
-          <Link to={"/"}>Home</Link>
-          <Link to={"/products"}>Products</Link>
-          <Link to={"/cart"}>Cart</Link>
-          <Link to={"/wishlist"}>Wishlist</Link>
-          {!isAuthenticated && <Link to={"/login"}>Login</Link>}
+                    <p>
+                        Your one-stop destination for quality products at
+                        competitive prices.
+                    </p>
 
-        </div>
-        <div className="footer-contact">
+                </section>
 
-          <h3>Contact</h3>
-          <dl>
+                <nav className="footer-links">
 
-            <dt>Email</dt>
-            <dd>support@shopease.com</dd>            
+                    <h3>Quick Links</h3>
 
-            <dt>Phone</dt>
-            <dd>+91 98765 43210</dd>
+                    <ul>
 
-            <dt>Location</dt>
-            <dd>India</dd>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
 
-          </dl>
+                        <li>
+                            <Link to="/products">Products</Link>
+                        </li>
 
-        </div>
+                        {isAuthenticated && (
+                            <>
+                                <li>
+                                    <Link to="/cart">Cart</Link>
+                                </li>
 
-      </div>
+                                <li>
+                                    <Link to="/wishlist">Wishlist</Link>
+                                </li>
 
-      <div className="footer-bottom">
+                                <li>
+                                    <Link to="/profile">Profile</Link>
+                                </li>
+                            </>
+                        )}
 
-          <p>© 2026 ShopEase. All rights reserved.</p>
+                        {!isAuthenticated && (
+                            <li>
+                                <Link to="/login">Login</Link>
+                            </li>
+                        )}
 
-        </div>
-    
-    </footer>
-  );
+                    </ul>
+
+                </nav>
+
+                <section className="footer-contact">
+
+                    <h3>Contact</h3>
+
+                    <p>
+                        <strong>Email:</strong>
+                        <span> support@shopease.com</span>
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        <span> +91 98765 43210</span>
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        <span> India</span>
+                    </p>
+
+                </section>
+
+            </div>
+
+            <div className="footer-bottom">
+                <p>© 2026 ShopEase. All rights reserved.</p>
+            </div>
+
+        </footer>
+    );
 }
 
-export default Footer
+export default Footer;
